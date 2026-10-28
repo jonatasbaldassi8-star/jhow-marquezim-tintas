@@ -6,6 +6,11 @@
 <title>Jhow da Marquezim Tintas · Lençóis Paulista</title>
 <meta name="description" content="Sua casa, suas cores, seu estilo. Tintas, dicas de pintura e profissionais parceiros em Lençóis Paulista e região.">
 <meta name="theme-color" content="#F26A1B">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Jhow da Marquezim Tintas">
+<meta property="og:description" content="Sua casa, suas cores, seu estilo. Fale comigo no WhatsApp.">
+<meta property="og:image" content="https://jhow-marquezim-tintas.vercel.app/og.png">
+<meta property="og:locale" content="pt_BR">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&display=swap" rel="stylesheet">
@@ -17,6 +22,7 @@
   <a href="#inicio" class="brand">Jhow <span>da Marquezim</span></a>
   <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="menu">Menu</button>
   <nav id="menu" class="menu" hidden>
+    <a href="#orcamento">Calcular tinta</a>
     <a href="#inspiracoes">Inspirações</a>
     <a href="#cores">Escolha de cores</a>
     <a href="#dicas">Dicas de pintura</a>
@@ -34,6 +40,7 @@
     <p class="kicker">Lençóis Paulista e região</p>
     <h1>Jhow da Marquezim Tintas</h1>
     <p class="slogan">Sua casa, suas cores, seu estilo</p>
+    <p class="badge">+15 anos de experiência com tintas</p>
     <a class="btn btn-wa" data-wa="Olá, Jhow! Vim pelo seu site e gostaria de ajuda com tintas.">Chamar no WhatsApp</a>
     <a class="btn btn-ghost" href="#inspiracoes">Ver inspirações</a>
   </div>
@@ -42,9 +49,24 @@
   </div>
 </section>
 
+<section id="orcamento" class="sec alt">
+  <h2>Calcule sua tinta e peça orçamento</h2>
+  <p class="lead">Informe as medidas, veja uma estimativa e envie para mim no WhatsApp.</p>
+  <form id="quoteForm" class="form">
+    <label>O que vai pintar<select name="ambiente"><option>Sala</option><option>Quarto</option><option>Cozinha</option><option>Fachada</option><option>Muro</option><option>Portão ou grade</option><option>Outro</option></select></label>
+    <label>Largura total das paredes (m)<input name="larg" type="number" inputmode="decimal" min="0" step="0.1"></label>
+    <label>Altura (m)<input name="alt" type="number" inputmode="decimal" min="0" step="0.1" value="2.7"></label>
+    <label>Portas e janelas a descontar (m²)<input name="desc" type="number" inputmode="decimal" min="0" step="0.1" value="0"></label>
+    <label>Demãos<select name="dem"><option>1</option><option selected>2</option><option>3</option></select></label>
+    <p id="calcOut" class="result" role="status">Preencha largura e altura para ver a estimativa.</p>
+    <button class="btn btn-wa" type="submit">Pedir orçamento no WhatsApp</button>
+    <p class="note">Estimativa com rendimento médio de 10 m² por litro em cada demão. O rendimento real varia conforme a tinta e a parede.</p>
+  </form>
+</section>
+
 <section id="inspiracoes" class="sec">
   <h2>Inspirações</h2>
-  <p class="lead">Ideias de cores para fachadas, salas, muros e ambientes. Ilustrações de exemplo; as fotos reais dos seus trabalhos entram na pasta <code>img</code> (veja o README).</p>
+  <p class="lead">Ideias de combinações de cores para fachadas, salas, muros e ambientes. Quer ver como ficaria na sua casa? Me chame no WhatsApp.</p>
   <div class="gallery" id="gallery"></div>
 </section>
 
@@ -122,9 +144,11 @@
     <a class="btn btn-ghost" id="mapLink" target="_blank" rel="noopener">Ver localização da loja</a>
   </div>
   <p class="note" id="addr"></p>
+  <p class="note" id="hours"></p>
 </section>
 </main>
 
+<a class="fab" data-wa="Olá, Jhow! Vim pelo seu site." aria-label="Chamar no WhatsApp">WhatsApp</a>
 <footer>© <span id="yr"></span> Jhow da Marquezim Tintas · Lençóis Paulista, SP</footer>
 <script src="script.js"></script>
 </body>

@@ -2,6 +2,7 @@
 const CONFIG = {
   whatsapp: "5514998164220",          // código do país + DDD + número
   instagram: "jonatasbaldassy",
+  horario: "",                         // ex.: "Seg a Sex 8h às 18h, Sáb 8h às 12h"
   endereco: "",                        // ex.: "Rua Exemplo, 123, Centro, Lençóis Paulista/SP"
   formEndpoint: "",                    // opcional: URL do Formspree (veja README). Vazio = envia por WhatsApp
 };
@@ -36,7 +37,8 @@ document.querySelectorAll("[data-wa]").forEach(a => { a.href = waLink(a.dataset.
 $("#igLink").href = `https://instagram.com/${CONFIG.instagram}`;
 const q = encodeURIComponent(CONFIG.endereco || "Marquezim Tintas, Lençóis Paulista SP");
 $("#mapLink").href = `https://www.google.com/maps/search/?api=1&query=${q}`;
-$("#addr").textContent = CONFIG.endereco || "Endereço: edite em script.js (CONFIG.endereco).";
+$("#addr").textContent = CONFIG.endereco ? "Endereço: " + CONFIG.endereco : "";
+$("#hours").textContent = CONFIG.horario ? "Horário: " + CONFIG.horario : "";
 $("#yr").textContent = new Date().getFullYear();
 
 /* Galeria */
@@ -47,7 +49,8 @@ $("#gallery").innerHTML = GALLERY.map(g =>
 /* Parceiros */
 const box = $("#partners");
 if (!PARTNERS.length) {
-  box.innerHTML = `<p class="empty">Em breve, profissionais de confiança da região. Quer aparecer aqui? Use o formulário abaixo.</p>`;
+  $("#parceiros").hidden = true;
+  document.querySelector('#menu a[href="#parceiros"]').remove();
 } else {
   PARTNERS.forEach(p => {
     const num = onlyDigits(p.telefone);
@@ -63,6 +66,24 @@ if (!PARTNERS.length) {
     box.appendChild(el);
   });
 }
+
+
+/* Calculadora de tinta */
+const qf = $("#quoteForm"), out = $("#calcOut");
+let litros = 0, area = 0;
+function calc() {
+  const f = new FormData(qf), n = k => parseFloat(String(f.get(k)).replace(",", ".")) || 0;
+  area = Math.max(0, n("larg") * n("alt") - n("desc"));
+  litros = area * n("dem") / 10;
+  out.textContent = area ? `Área: ${area.toFixed(1)} m². Você vai precisar de cerca de ${Math.ceil(litros * 10) / 10} litros de tinta.` : "Preencha largura e altura para ver a estimativa.";
+}
+qf.addEventListener("input", calc);
+qf.addEventListener("submit", e => {
+  e.preventDefault(); calc();
+  const f = new FormData(qf);
+  const t = `Olá, Jhow! Quero um orçamento.\nO que vai pintar: ${f.get("ambiente")}` + (area ? `\nÁrea: ${area.toFixed(1)} m² (${f.get("dem")} demãos)\nEstimativa: ${Math.ceil(litros * 10) / 10} litros` : "");
+  window.open(waLink(t), "_blank", "noopener");
+});
 
 /* Formulário "Seja um parceiro" */
 $("#partnerForm").addEventListener("submit", async e => {
