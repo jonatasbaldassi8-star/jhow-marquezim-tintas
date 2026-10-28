@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jhow da Marquezim Tintas · Lençóis Paulista</title>
+<meta name="description" content="Sua casa, suas cores, seu estilo. Tintas, dicas de pintura e profissionais parceiros em Lençóis Paulista e região.">
+<meta name="theme-color" content="#F26A1B">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="topbar">
+  <a href="#inicio" class="brand">Jhow <span>da Marquezim</span></a>
+  <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="menu">Menu</button>
+  <nav id="menu" class="menu" hidden>
+    <a href="#inspiracoes">Inspirações</a>
+    <a href="#cores">Escolha de cores</a>
+    <a href="#dicas">Dicas de pintura</a>
+    <a href="#produtos">Produtos</a>
+    <a href="#parceiros">Profissionais parceiros</a>
+    <a href="#seja-parceiro">Seja um parceiro</a>
+    <a href="#sobre">Sobre o Jhow</a>
+    <a href="#contato">Contato</a>
+  </nav>
+</header>
+
+<main>
+<section id="inicio" class="hero">
+  <div class="hero-text">
+    <p class="kicker">Lençóis Paulista e região</p>
+    <h1>Jhow da Marquezim Tintas</h1>
+    <p class="slogan">Sua casa, suas cores, seu estilo</p>
+    <a class="btn btn-wa" data-wa="Olá, Jhow! Vim pelo seu site e gostaria de ajuda com tintas.">Chamar no WhatsApp</a>
+    <a class="btn btn-ghost" href="#inspiracoes">Ver inspirações</a>
+  </div>
+  <div class="chips" aria-hidden="true">
+    <i style="--c:#F26A1B"></i><i style="--c:#1a1a1a"></i><i style="--c:#E9DFD0"></i><i style="--c:#C8472B"></i><i style="--c:#6E8B74"></i><i style="--c:#3F5A7A"></i>
+  </div>
+</section>
+
+<section id="inspiracoes" class="sec">
+  <h2>Inspirações</h2>
+  <p class="lead">Ideias de cores para fachadas, salas, muros e ambientes. Ilustrações de exemplo; as fotos reais dos seus trabalhos entram na pasta <code>img</code> (veja o README).</p>
+  <div class="gallery" id="gallery"></div>
+</section>
+
+<section id="cores" class="sec alt">
+  <h2>Escolha de cores</h2>
+  <p class="lead">Teste cores direto nos simuladores e catálogos oficiais das marcas.</p>
+  <div class="stack">
+    <a class="btn btn-dark" href="https://www.suvinil.com.br/" target="_blank" rel="noopener">Suvinil: catálogo de cores</a>
+    <a class="btn btn-dark" href="https://www.futuratintas.com.br/" target="_blank" rel="noopener">Futura Tintas: site oficial</a>
+    <a class="btn btn-dark" href="https://www.anjo.com.br/" target="_blank" rel="noopener">Anjo Tintas: site oficial</a>
+  </div>
+</section>
+
+<section id="dicas" class="sec">
+  <h2>Dicas de pintura</h2>
+  <details open><summary>Como preparar a parede</summary>
+    <p>Raspe a tinta solta, corrija trincas com massa e lixe até a superfície ficar lisa. Retire o pó com pano úmido e espere secar. Se houver mofo, limpe antes com água sanitária diluída e deixe secar bem.</p></details>
+  <details><summary>Como escolher a tinta</summary>
+    <p>Pense no local: áreas internas pedem tintas laváveis e de baixo odor; áreas externas precisam resistir a sol e chuva. Parede nova costuma pedir selador ou fundo preparador antes da tinta de acabamento.</p></details>
+  <details><summary>Fosco, acetinado ou brilhante?</summary>
+    <p>O fosco disfarça imperfeições e dá um visual mais sofisticado. O acetinado é fácil de limpar e vai bem em salas e corredores. O brilhante destaca detalhes e mostra todos os defeitos da parede.</p></details>
+  <details><summary>Quanta tinta comprar?</summary>
+    <p>Meça largura e altura das paredes, some as áreas e desconte portas e janelas. Compare o resultado com o rendimento por demão informado na lata. Me chame no WhatsApp que ajudo a calcular.</p></details>
+</section>
+
+<section id="produtos" class="sec alt">
+  <h2>Produtos</h2>
+  <p class="lead">Informações gerais. Para preços e disponibilidade, fale comigo.</p>
+  <div class="cards">
+    <article><h3>Tintas imobiliárias</h3><p>Para paredes internas e externas de casas, apartamentos e comércios, em vários acabamentos.</p></article>
+    <article><h3>Esmaltes</h3><p>Para madeira e metal: portas, portões, grades e janelas.</p></article>
+    <article><h3>Texturas</h3><p>Dão relevo e personalidade a fachadas, muros e paredes de destaque.</p></article>
+    <article><h3>Impermeabilizantes</h3><p>Protegem lajes, calhas, paredes e áreas expostas contra infiltração.</p></article>
+  </div>
+</section>
+
+<section id="parceiros" class="sec">
+  <h2>Profissionais parceiros</h2>
+  <p class="lead">Pintores, gesseiros, pedreiros, eletricistas e encanadores da região.</p>
+  <div id="partners" class="cards"></div>
+</section>
+
+<section id="seja-parceiro" class="sec alt">
+  <h2>Seja um parceiro</h2>
+  <p class="lead">Preencha para pedir sua inclusão na lista. Eu analiso cada solicitação antes de publicar.</p>
+  <form id="partnerForm" class="form">
+    <label>Nome<input name="nome" required autocomplete="name"></label>
+    <label>Especialidade
+      <select name="especialidade" required>
+        <option value="">Escolha</option><option>Pintor</option><option>Gesseiro</option><option>Pedreiro</option><option>Eletricista</option><option>Encanador</option><option>Outro</option>
+      </select></label>
+    <label>Cidade<input name="cidade" required></label>
+    <label>Telefone com DDD<input name="telefone" type="tel" inputmode="tel" required autocomplete="tel"></label>
+    <button class="btn btn-wa" type="submit">Enviar solicitação</button>
+    <p id="formMsg" class="note" role="status"></p>
+  </form>
+</section>
+
+<section id="sobre" class="sec">
+  <h2>Sobre o Jhow</h2>
+  <div class="about">
+    <div class="photo" id="photo">
+      <img src="img/jhow.jpg" alt="Jhow, da Marquezim Tintas" onerror="this.remove()">
+      <span>Sua foto aqui</span>
+    </div>
+    <p>Trabalho há mais de 15 anos com tintas e ajudo você a escolher a cor, o produto e a quantidade certa para cada obra. Atendo em Lençóis Paulista e região, na Marquezim Tintas.</p>
+  </div>
+</section>
+
+<section id="contato" class="sec dark">
+  <h2>Contato</h2>
+  <div class="stack">
+    <a class="btn btn-wa" data-wa="Olá, Jhow! Vim pelo seu site.">WhatsApp: 14 99816-4220</a>
+    <a class="btn btn-ghost" id="igLink" target="_blank" rel="noopener">Instagram @jonatasbaldassy</a>
+    <a class="btn btn-ghost" id="mapLink" target="_blank" rel="noopener">Ver localização da loja</a>
+  </div>
+  <p class="note" id="addr"></p>
+</section>
+</main>
+
+<footer>© <span id="yr"></span> Jhow da Marquezim Tintas · Lençóis Paulista, SP</footer>
+<script src="script.js"></script>
+</body>
+</html>
