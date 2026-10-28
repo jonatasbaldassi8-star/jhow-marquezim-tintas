@@ -23,7 +23,6 @@
   <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="menu">Menu</button>
   <nav id="menu" class="menu" hidden>
     <a href="#orcamento">Calcular tinta</a>
-    <a href="#inspiracoes">Inspirações</a>
     <a href="#cores">Escolha de cores</a>
     <a href="#dicas">Dicas de pintura</a>
     <a href="#produtos">Produtos</a>
@@ -41,8 +40,12 @@
     <h1>Jhow da Marquezim Tintas</h1>
     <p class="slogan">Sua casa, suas cores, seu estilo</p>
     <p class="badge">+15 anos de experiência com tintas</p>
-    <a class="btn btn-wa" data-wa="Olá, Jhow! Vim pelo seu site e gostaria de ajuda com tintas.">Chamar no WhatsApp</a>
-    <a class="btn btn-ghost" href="#inspiracoes">Ver inspirações</a>
+    <img class="hero-photo" src="img/jhow.jpg" alt="Jhow, da Marquezim Tintas" onerror="this.remove()">
+    <p class="pick">Escolha e fale comigo no WhatsApp:</p>
+    <a class="btn btn-wa" data-wa="Olá, Jhow! Vim pelo seu site e preciso de tintas para casa ou obra.">Casa e obra</a>
+    <a class="btn btn-wa" data-wa="Olá, Jhow! Vim pelo seu site e preciso de tinta automotiva.">Automotiva</a>
+    <a class="btn btn-wa" data-wa="Olá, Jhow! Vim pelo seu site e preciso de tinta industrial.">Industrial</a>
+    <a class="btn btn-ghost" href="#orcamento">Calcular tinta</a>
   </div>
   <div class="chips" aria-hidden="true">
     <i style="--c:#F26A1B"></i><i style="--c:#1a1a1a"></i><i style="--c:#E9DFD0"></i><i style="--c:#C8472B"></i><i style="--c:#6E8B74"></i><i style="--c:#3F5A7A"></i>
@@ -62,12 +65,6 @@
     <button class="btn btn-wa" type="submit">Pedir orçamento no WhatsApp</button>
     <p class="note">Estimativa com rendimento médio de 10 m² por litro em cada demão. O rendimento real varia conforme a tinta e a parede.</p>
   </form>
-</section>
-
-<section id="inspiracoes" class="sec">
-  <h2>Inspirações</h2>
-  <p class="lead">Ideias de combinações de cores para fachadas, salas, muros e ambientes. Quer ver como ficaria na sua casa? Me chame no WhatsApp.</p>
-  <div class="gallery" id="gallery"></div>
 </section>
 
 <section id="cores" class="sec alt">
@@ -97,6 +94,8 @@
   <p class="lead">Informações gerais. Para preços e disponibilidade, fale comigo.</p>
   <div class="cards">
     <article><h3>Tintas imobiliárias</h3><p>Para paredes internas e externas de casas, apartamentos e comércios, em vários acabamentos.</p></article>
+    <article><h3>Tintas automotivas</h3><p>Para pintura e retoque de carros e motos.</p></article>
+    <article><h3>Tintas industriais</h3><p>Para máquinas, estruturas metálicas e equipamentos.</p></article>
     <article><h3>Esmaltes</h3><p>Para madeira e metal: portas, portões, grades e janelas.</p></article>
     <article><h3>Texturas</h3><p>Dão relevo e personalidade a fachadas, muros e paredes de destaque.</p></article>
     <article><h3>Impermeabilizantes</h3><p>Protegem lajes, calhas, paredes e áreas expostas contra infiltração.</p></article>
@@ -140,7 +139,7 @@
   <h2>Contato</h2>
   <div class="stack">
     <a class="btn btn-wa" data-wa="Olá, Jhow! Vim pelo seu site.">WhatsApp: 14 99816-4220</a>
-    <a class="btn btn-ghost" id="igLink" target="_blank" rel="noopener">Instagram @jonatasbaldassy</a>
+    <a class="btn btn-ghost" id="igLink" target="_blank" rel="noopener">Instagram @jonatas_baldassi</a>
     <a class="btn btn-ghost" id="mapLink" target="_blank" rel="noopener">Ver localização da loja</a>
   </div>
   <p class="note" id="addr"></p>
