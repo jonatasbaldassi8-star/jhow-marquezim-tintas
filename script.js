@@ -4,11 +4,11 @@ const CONFIG = {
   endereco: "", // ex.: "Rua X, 123, Centro, Lençóis Paulista/SP"
   links: {
     suvinil: "https://www.suvinil.com.br",
-    futura: "",   // cole o link do catálogo de cores da Futura
-    anjo: "",     // cole o link do PDF da Anjo Tintas
-    skylack: "",  // cole o link de cores da Skylack
+    futura: "",   //https://futuratintas.com.br/catalogo-de-cores/ cole o link do catálogo de cores da Futura
+    anjo: "",     //https://www5.anjo.com.br/files/cartela_cores/cartelacores_12.pdf o link do PDF da Anjo Tintas
+    skylack: "",  //https://site.skylack.com.br/tintas-prontas/
     advance: "https://advancetintas.com.br",
-    ecomundi: "https://ecomunditintas.com.br"
+    ecomundi:
   }
 };
 // ======================
