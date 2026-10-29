@@ -1,5 +1,5 @@
 // ===== EDITE AQUI =====
-const CONFIG = {
+const CONFIG = 
   whatsapp: "5514998164220",
   endereco: "", // ex.: "Rua X, 123, Centro, Lençóis Paulista/SP"
   links: {
