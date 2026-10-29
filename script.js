@@ -1,105 +1,67 @@
-/* ===== CONFIGURAÇÕES (edite aqui) ===== */
+// ===== EDITE AQUI =====
 const CONFIG = {
-  whatsapp: "5514998164220",          // código do país + DDD + número
-  instagram: "jonatasbaldassy",
-  horario: "",                         // ex.: "Seg a Sex 8h às 18h, Sáb 8h às 12h"
-  endereco: "",                        // ex.: "Rua Exemplo, 123, Centro, Lençóis Paulista/SP"
-  formEndpoint: "",                    // opcional: URL do Formspree (veja README). Vazio = envia por WhatsApp
+  whatsapp: "5514998164220",
+  endereco: "", // ex.: "Rua X, 123, Centro, Lençóis Paulista/SP"
+  links: {
+    suvinil: "https://www.suvinil.com.br",
+    futura: "",   // cole o link do catálogo de cores da Futura
+    anjo: "",     // cole o link do PDF da Anjo Tintas
+    skylack: "",  // cole o link de cores da Skylack
+    advance: "https://advancetintas.com.br",
+    ecomundi: "https://ecomunditintas.com.br"
+  }
 };
+// ======================
 
-/* Lista de parceiros. Vazia por padrão. Exemplo (remova as // para usar):
-   { nome: "Nome do profissional", especialidade: "Pintor", cidade: "Lençóis Paulista", telefone: "14 90000-0000" }
-   Para mostrar um exemplo marcado como demonstração, acrescente: demo: true */
-const PARTNERS = [
-];
+const zapUrl = t => "https://wa.me/" + CONFIG.whatsapp + "?text=" + encodeURIComponent(t);
 
-/* Galeria: cores de exemplo. Para usar fotos reais, coloque o arquivo em img/ e preencha "foto". */
-const GALLERY = [
-  { t: "Fachada clara", wall: "#E9DFD0", door: "#F26A1B", roof: "#3a3a3a" },
-  { t: "Fachada grafite", wall: "#4a4a4a", door: "#F26A1B", roof: "#111" },
-  { t: "Sala acolhedora", wall: "#D9A27A", door: "#fff", roof: "#222" },
-  { t: "Muro em destaque", wall: "#C8472B", door: "#fff", roof: "#222" },
-  { t: "Casa verde-sálvia", wall: "#9BB09D", door: "#222", roof: "#5a3b2a" },
-  { t: "Azul moderno", wall: "#6B88A8", door: "#fff", roof: "#222" },
-];
-
-const $ = s => document.querySelector(s);
-const onlyDigits = s => s.replace(/\D/g, "");
-const waLink = msg => `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(msg)}`;
-
-/* Menu */
-const btn = $("#menuBtn"), menu = $("#menu");
-btn.onclick = () => { const o = menu.hidden; menu.hidden = !o; btn.setAttribute("aria-expanded", o); };
-menu.addEventListener("click", e => { if (e.target.tagName === "A") { menu.hidden = true; btn.setAttribute("aria-expanded", false); } });
-
-/* Botões de WhatsApp, Instagram e mapa */
-document.querySelectorAll("[data-wa]").forEach(a => { a.href = waLink(a.dataset.wa); a.target = "_blank"; a.rel = "noopener"; });
-$("#igLink").href = `https://instagram.com/${CONFIG.instagram}`;
-const q = encodeURIComponent(CONFIG.endereco || "Marquezim Tintas, Lençóis Paulista SP");
-$("#mapLink").href = `https://www.google.com/maps/search/?api=1&query=${q}`;
-$("#addr").textContent = CONFIG.endereco ? "Endereço: " + CONFIG.endereco : "";
-$("#hours").textContent = CONFIG.horario ? "Horário: " + CONFIG.horario : "";
-$("#yr").textContent = new Date().getFullYear();
-
-/* Galeria */
-const house = g => `<svg viewBox="0 0 200 150" role="img" aria-label="${g.t}"><rect width="200" height="150" fill="#f3efe9"/><rect y="118" width="200" height="32" fill="#cfc9bf"/><polygon points="25,60 100,20 175,60" fill="${g.roof}"/><rect x="35" y="60" width="130" height="62" fill="${g.wall}"/><rect x="88" y="78" width="26" height="44" fill="${g.door}" stroke="#0003"/><rect x="48" y="76" width="28" height="24" fill="#cfe3ef" stroke="#0003"/><rect x="126" y="76" width="28" height="24" fill="#cfe3ef" stroke="#0003"/></svg>`;
-$("#gallery").innerHTML = GALLERY.map(g =>
-  `<figure>${g.foto ? `<img src="img/${g.foto}" alt="${g.t}" loading="lazy">` : house(g)}<figcaption>${g.t}</figcaption></figure>`).join("");
-
-/* Parceiros */
-const box = $("#partners");
-if (!PARTNERS.length) {
-  $("#parceiros").hidden = true;
-  document.querySelector('#menu a[href="#parceiros"]').remove();
-} else {
-  PARTNERS.forEach(p => {
-    const num = onlyDigits(p.telefone);
-    const el = document.createElement("article");
-    el.innerHTML = `${p.demo ? '<span class="demo">Exemplo de demonstração</span>' : ""}<h3></h3><p class="e"></p><p class="c"></p>
-      <div class="actions"><a class="btn btn-dark btn-sm">Ligar</a><a class="btn btn-wa btn-sm" target="_blank" rel="noopener">WhatsApp</a></div>`;
-    el.querySelector("h3").textContent = p.nome;
-    el.querySelector(".e").textContent = p.especialidade;
-    el.querySelector(".c").textContent = p.cidade;
-    const [call, wa] = el.querySelectorAll("a");
-    call.href = `tel:+55${num}`;
-    wa.href = `https://wa.me/55${num}?text=${encodeURIComponent("Olá! Vi seu contato no site do Jhow da Marquezim Tintas.")}`;
-    box.appendChild(el);
-  });
-}
-
-
-/* Calculadora de tinta */
-const qf = $("#quoteForm"), out = $("#calcOut");
-let litros = 0, area = 0;
-function calc() {
-  const f = new FormData(qf), n = k => parseFloat(String(f.get(k)).replace(",", ".")) || 0;
-  area = Math.max(0, n("larg") * n("alt") - n("desc"));
-  litros = area * n("dem") / 10;
-  out.textContent = area ? `Área: ${area.toFixed(1)} m². Você vai precisar de cerca de ${Math.ceil(litros * 10) / 10} litros de tinta.` : "Preencha largura e altura para ver a estimativa.";
-}
-qf.addEventListener("input", calc);
-qf.addEventListener("submit", e => {
-  e.preventDefault(); calc();
-  const f = new FormData(qf);
-  const t = `Olá, Jhow! Quero um orçamento.\nO que vai pintar: ${f.get("ambiente")}` + (area ? `\nÁrea: ${area.toFixed(1)} m² (${f.get("dem")} demãos)\nEstimativa: ${Math.ceil(litros * 10) / 10} litros` : "");
-  window.open(waLink(t), "_blank", "noopener");
+document.querySelectorAll("[data-zap]").forEach(a => {
+  a.href = zapUrl(a.dataset.zap);
+  a.target = "_blank";
+  a.rel = "noopener";
 });
 
-/* Formulário "Seja um parceiro" */
-$("#partnerForm").addEventListener("submit", async e => {
-  e.preventDefault();
-  const d = Object.fromEntries(new FormData(e.target));
-  const msg = $("#formMsg");
-  const texto = `Solicitação de parceria\nNome: ${d.nome}\nEspecialidade: ${d.especialidade}\nCidade: ${d.cidade}\nTelefone: ${d.telefone}`;
-  if (CONFIG.formEndpoint) {
-    try {
-      const r = await fetch(CONFIG.formEndpoint, { method: "POST", headers: { "Content-Type": "application/json", Accept: "application/json" }, body: JSON.stringify(d) });
-      if (!r.ok) throw 0;
-      msg.textContent = "Solicitação enviada. Entro em contato em breve.";
-      e.target.reset();
-    } catch { msg.textContent = "Não foi possível enviar. Tente de novo ou fale pelo WhatsApp."; }
-  } else {
-    window.open(waLink(texto), "_blank", "noopener");
-    msg.textContent = "Abrindo o WhatsApp com seus dados. Toque em enviar por lá.";
+document.querySelectorAll("[data-link]").forEach(a => {
+  const url = CONFIG.links[a.dataset.link];
+  if (url) a.href = url;
+  else { a.classList.add("sem-link"); a.removeAttribute("target"); }
+});
+
+if (CONFIG.endereco) document.getElementById("endereco").textContent = CONFIG.endereco;
+
+// Calculadora (aceita link pré-preenchido: ?amb=Sala&alt=2.7&desc=0&dem=2)
+const $ = id => document.getElementById(id);
+const q = new URLSearchParams(location.search);
+["amb", "comp", "larg", "alt", "desc", "dem", "rend"].forEach(id => {
+  if (q.has(id)) $(id).value = q.get(id).replace(",", ".");
+});
+
+function calcular() {
+  const n = id => parseFloat(String($(id).value).replace(",", ".")) || 0;
+  const area = 2 * (n("comp") + n("larg")) * n("alt") - n("desc");
+  const rend = n("rend");
+  const dem = Math.max(1, n("dem"));
+  if (area <= 0 || rend <= 0) {
+    $("resultado").textContent = "Confira as medidas: a área de parede deve ser maior que zero.";
+    $("zapCalc").hidden = true;
+    return;
   }
+  const litros = (area * dem) / rend;
+  const txt = `${$("amb").value || "Ambiente"}: ${area.toFixed(1)} m² de parede, ${dem} demão(s), cerca de ${litros.toFixed(1)} litros.`;
+  $("resultado").textContent = txt;
+  const z = $("zapCalc");
+  z.href = zapUrl("Olá Jhow! Fiz o cálculo no seu site. " + txt);
+  z.target = "_blank";
+  z.rel = "noopener";
+  z.hidden = false;
+}
+$("calcular").addEventListener("click", calcular);
+if (q.has("amb") || q.has("alt")) calcular();
+
+// Seja um parceiro
+$("enviarParceiro").addEventListener("click", () => {
+  const nome = $("pNome").value.trim();
+  if (!nome) { $("pNome").focus(); return; }
+  const t = `Olá Jhow! Quero ser parceiro. Nome: ${nome}. Profissão: ${$("pProf").value.trim()}. Cidade: ${$("pCid").value.trim()}.`;
+  window.open(zapUrl(t), "_blank", "noopener");
 });
